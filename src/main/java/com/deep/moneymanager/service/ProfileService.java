@@ -28,7 +28,7 @@ public class ProfileService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtill jwtUtill;
 
-    @Value("${app-activation.url}")
+    @Value("${app.activation.url}")
     private String activationURL;
 
     // ================= REGISTER =================

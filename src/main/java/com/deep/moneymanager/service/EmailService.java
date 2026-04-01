@@ -13,7 +13,7 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    @Value("${spring.mail.properties.mail.smtp.from}")  // better than smtp.from
+    @Value("${{spring.mail.username}")  // better than smtp.from
     private String fromEmail;
 
     public void sendEmail(String to, String subject, String body) {

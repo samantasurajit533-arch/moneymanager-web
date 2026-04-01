@@ -27,7 +27,7 @@ public class NotificationService {
     @Value("${money.manager.frontend.url}")
     private String frontendUrl;
 
-    @Scheduled(cron = "0 0 22 * * *",zone = "IST")
+    @Scheduled(cron = "0 0 22 * * *",zone = "Asia/Kolkata")
     public void sendDailyIncomeExpenseReminder(){
         log.info("job started:sendDailyIncomeExpenseReminder()");
         List<ProfileEntity>profileEntities =profileRepository.findAll();
@@ -71,9 +71,11 @@ public class NotificationService {
 
                 table.append("</table>");
 
-                String body = "Hi " + profile.getFullName()
-                        + ",<br><br>Here is your today's expense summary:<br><br>"
-                        + table
+                String body = "Hi " + profile.getFullName() + ",<br><br>"
+                        + "This is a friendly reminder to add income and expenses for today in Money Manager.<br><br>"
+                        + "<a href='" + frontendUrl + "' "
+                        + "style='display:inline-block;padding:10px 20px;background-color:blue;color:white;text-decoration:none;'>"
+                        + "Open Money Manager</a>"
                         + "<br><br>Best regards,<br>Money Manager Team";
 
                 emailService.sendEmail(profile.getEmail(), "Your Daily Expense Summary", body);
